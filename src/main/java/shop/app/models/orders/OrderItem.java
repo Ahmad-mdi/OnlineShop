@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 public class OrderItem {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @OneToOne
     @JoinColumn(name = "product_id")

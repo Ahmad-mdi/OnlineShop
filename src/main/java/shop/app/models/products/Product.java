@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 public class Product {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title;
     private String description;

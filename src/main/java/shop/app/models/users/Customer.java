@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Customer {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String firstname;
     private String lastname;

@@ -2,13 +2,15 @@ package shop.app.models.site;
 
 import shop.app.models.BaseEntity.BaseEntity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
 public class Slider extends BaseEntity {
     private String image;
     private String description;
-    private Integer order;
+    @Column(nullable = true ,name = "item_order")
+    private int itemOrder;
 
     public String getImage() {
         return image;
@@ -26,11 +28,11 @@ public class Slider extends BaseEntity {
         this.description = description;
     }
 
-    public Integer getOrder() {
-        return order;
+    public int getItemOrder() {
+        return itemOrder;
     }
 
-    public void setOrder(Integer order) {
-        this.order = order;
+    public void setItemOrder(int itemOrder) {
+        this.itemOrder = itemOrder;
     }
 }

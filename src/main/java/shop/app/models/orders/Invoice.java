@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 public class Invoice {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @OneToOne
     @JoinColumn(name = "customer_id")
