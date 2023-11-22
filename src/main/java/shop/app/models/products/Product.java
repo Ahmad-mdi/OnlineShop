@@ -1,6 +1,7 @@
 package shop.app.models.products;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,6 +24,9 @@ public class Product {
     private List<Feature> features;
     @ManyToMany
     private List<Size> sizes;
+    private boolean enable;
+    private boolean exists;
+    private Date addDate;
 
     public long getId() {
         return id;
@@ -102,5 +106,54 @@ public class Product {
 
     public void setSizes(List<Size> sizes) {
         this.sizes = sizes;
+    }
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
+    }
+
+    public boolean isExists() {
+        return exists;
+    }
+
+    public void setExists(boolean exists) {
+        this.exists = exists;
+    }
+
+    public Date getAddDate() {
+        return addDate;
+    }
+
+    public void setAddDate(Date addDate) {
+        this.addDate = addDate;
+    }
+
+//    for update relationship tables:
+    public void removeColor(long id){
+        Color color = getColors().stream().filter(x->x.getId() == id).findFirst().get();
+        getColors().remove(color);
+    }
+
+    public void addColor(Color color){
+        getColors().add(color);
+    }
+    public void removeFeature(long id){
+        Feature feature = getFeatures().stream().filter(x->x.getId() == id).findFirst().get();
+        getFeatures().remove(feature);
+    }
+
+    public void addFeature(Feature feature){
+        getFeatures().add(feature);
+    }
+    public void removeSize(long id){
+        Size size = getSizes().stream().filter(x->x.getId() == id).findFirst().get();
+        getSizes().remove(size);
+    }
+
+    public void addSize(Size size){
+        getSizes().add(size);
     }
 }

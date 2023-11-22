@@ -7,5 +7,5 @@ import shop.app.models.users.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
-
+    User findFirstByUsernameAndPassword(String username,String password);
 }

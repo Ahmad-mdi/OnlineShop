@@ -16,6 +16,7 @@ public class User {
     private String password;
     private String email;
     private UserRole role;
+    private boolean enable;
 
     public long getId() {
         return id;
@@ -71,5 +72,13 @@ public class User {
 
     public void setRole(UserRole role) {
         this.role = role;
+    }
+
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
     }
 }

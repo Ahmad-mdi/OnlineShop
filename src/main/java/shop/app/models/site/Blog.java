@@ -1,5 +1,7 @@
 package shop.app.models.site;
 
+import shop.app.enums.BlogStatus;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +19,7 @@ public class Blog {
     private String image;
     private long visitCount;
     private Date publishDate;
+    private BlogStatus status;//enum
 
     public long getId() {
         return id;
@@ -72,5 +75,13 @@ public class Blog {
 
     public void setPublishDate(Date publishDate) {
         this.publishDate = publishDate;
+    }
+
+    public BlogStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(BlogStatus status) {
+        this.status = status;
     }
 }

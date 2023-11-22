@@ -13,6 +13,7 @@ public class Customer {
     private String tel;
     private String address;
     private String email;
+    private String postalCode;
 
     @OneToOne
     @JoinColumn(name = "user_id")
@@ -80,5 +81,13 @@ public class Customer {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 }

@@ -7,5 +7,5 @@ import shop.app.models.site.Slider;
 
 @Repository
 public interface ContentRepository extends JpaRepository<Content,Long> {
-
+    Content findFirstByKey(String key);
 }
