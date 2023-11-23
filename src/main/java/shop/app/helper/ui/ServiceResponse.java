@@ -1,5 +1,7 @@
 package shop.app.helper.ui;
 
+import shop.app.models.users.User;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +31,9 @@ public class ServiceResponse<T> implements Serializable {
         this.dataList = new ArrayList<T>();
         this.dataList .add(data);
         this.status = status;
-        this.message = "";
+        this.message = "get data is ok";
         this.hasError = false;
-        this.totalCount = 0;
+        this.totalCount = 1;
     }
     public ServiceResponse(String message, ResponseStatus status) {
         this.dataList = new ArrayList<T>();
@@ -47,6 +49,7 @@ public class ServiceResponse<T> implements Serializable {
         this.hasError = true;
         this.totalCount = 0;
     }
+
 
     public List<T> getDataList() {
         return dataList;
