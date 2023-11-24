@@ -2,6 +2,7 @@ package shop.app.Services.site;
 
 import org.springframework.stereotype.Service;
 import shop.app.helper.exceptions.DataNotFoundException;
+import shop.app.helper.ui.ServiceResponse;
 import shop.app.models.site.Blog;
 import shop.app.repositories.site.BlogRepository;
 
@@ -28,7 +29,10 @@ public class BlogService {
 
     }
 
-    public Blog add(Blog data) {
+    public Blog add(Blog data) throws Exception {
+        if (data.getTitle() == null || data.getTitle().equals(""))
+            throw new Exception("please fill title field");
+
         return blogRepository.save(data);
     }
 
@@ -45,7 +49,7 @@ public class BlogService {
         return blogRepository.save(oldData);
     }
 
-    public boolean delete(long id) throws DataNotFoundException {
+    public boolean deleteById(long id) throws DataNotFoundException {
         Blog oldData = getById(id);//getId with db
         if (oldData == null){
             throw new DataNotFoundException("data with id"+id+"not found");
