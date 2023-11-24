@@ -56,7 +56,7 @@ public class NavService {
     }
 
     //delete Nav find by id:
-    public boolean deleteById(long id) throws DataNotFoundException {
+    public boolean delete(long id) throws DataNotFoundException {
         Nav oldData = getById(id);//getId with db
         if (oldData == null){
             throw new DataNotFoundException("data with id"+id+"not found");
