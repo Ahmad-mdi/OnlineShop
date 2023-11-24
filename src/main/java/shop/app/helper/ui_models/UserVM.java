@@ -1,4 +1,4 @@
-package shop.app.helper.uiModels.users;
+package shop.app.helper.ui_models;
 
 import shop.app.enums.UserRole;
 import shop.app.models.users.User;

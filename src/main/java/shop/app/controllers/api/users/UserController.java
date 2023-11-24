@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 import shop.app.Services.users.UserService;
 import shop.app.helper.ui.ResponseStatus;
 import shop.app.helper.ui.ServiceResponse;
-import shop.app.helper.uiModels.users.UserVM;
+import shop.app.helper.ui_models.UserVM;
 import shop.app.models.users.User;
 
 @RestController

@@ -31,7 +31,7 @@ public class ServiceResponse<T> implements Serializable {
         this.dataList = new ArrayList<T>();
         this.dataList .add(data);
         this.status = status;
-        this.message = "get data is ok";
+        this.message = "ok";
         this.hasError = false;
         this.totalCount = 1;
     }
