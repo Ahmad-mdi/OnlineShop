@@ -36,7 +36,7 @@ public class OrderItemService {
         return orderItemRepository.save(oldData);
     }
 
-    public boolean delete(long id) throws DataNotFoundException {
+    public boolean deleteById(long id) throws DataNotFoundException {
         OrderItem oldData = getById(id);//getId with db
         if (oldData == null){
             throw new DataNotFoundException("data with id"+id+"not found");

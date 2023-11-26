@@ -9,6 +9,7 @@ public class UserVM {
     private String lastname;
     private String username;
     private String password;
+    private String newPassword;
     private String email;
     private UserRole role;
     private boolean enable;
@@ -98,5 +99,13 @@ public class UserVM {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
     }
 }

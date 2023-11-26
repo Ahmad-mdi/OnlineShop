@@ -38,7 +38,7 @@ public class FeatureService {
         return featureRepository.save(oldData);
     }
 
-    public boolean delete(long id) throws DataNotFoundException {
+    public boolean deleteById(long id) throws DataNotFoundException {
         Feature oldData = getById(id);//getId with db
         if (oldData == null){
             throw new DataNotFoundException("data with id"+id+"not found");

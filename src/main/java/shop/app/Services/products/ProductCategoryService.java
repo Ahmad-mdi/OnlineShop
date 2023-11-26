@@ -48,7 +48,7 @@ public class ProductCategoryService {
         return productCategoryRepository.save(oldData);
     }
 
-    public boolean delete(long id) throws DataNotFoundException {
+    public boolean deleteById(long id) throws DataNotFoundException {
         ProductCategory oldData = getById(id);//getId with db
         if (oldData == null){
             throw new DataNotFoundException("data with id"+id+"not found");

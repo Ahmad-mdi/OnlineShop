@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import shop.app.helper.exceptions.DataNotFoundException;
 import shop.app.models.users.User;
 import shop.app.repositories.users.UserRepository;
-
 import java.util.Optional;
 
 @Service
@@ -28,8 +27,9 @@ public class UserService {
         return null;
 
     }
-
-    public User add(User data) {
+    public User add(User data) throws Exception {
+        if (data.getUsername()==null || data.getPassword()==null)
+            throw new Exception("username password notNull!");
         return userRepository.save(data);
     }
 
@@ -45,7 +45,7 @@ public class UserService {
         return userRepository.save(oldData);
     }
 
-    public boolean delete(long id) throws DataNotFoundException {
+    public boolean deleteById(long id) throws DataNotFoundException {
         User oldData = getById(id);//getId with db
         if (oldData == null){
             throw new DataNotFoundException("data with id"+id+"not found");

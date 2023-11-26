@@ -44,7 +44,7 @@ public class CustomerService {
         return customerRepository.save(oldData);
     }
 
-    public boolean delete(long id) throws DataNotFoundException {
+    public boolean deleteById(long id) throws DataNotFoundException {
         Customer oldData = getById(id);//getId with db
         if (oldData == null){
             throw new DataNotFoundException("data with id"+id+"not found");

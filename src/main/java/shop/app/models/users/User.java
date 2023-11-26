@@ -3,6 +3,8 @@ package shop.app.models.users;
 import shop.app.enums.UserRole;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "users")
@@ -10,8 +12,10 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+//    @NotNull(message = "firstname is notnull!")
     private String firstname;
     private String lastname;
+//    @NotBlank(message = "username is notnull!")
     private String username;
     private String password;
     private String email;
