@@ -6,6 +6,7 @@ import shop.app.helper.ui.ResponseStatus;
 import shop.app.helper.ui.ServiceResponse;
 import shop.app.models.products.Color;
 
+import java.util.List;
 
 
 @RestController
@@ -16,7 +17,16 @@ public class ColorController {
     public ColorController(ColorService colorService) {
         this.colorService = colorService;
     }
-    
+
+    @GetMapping("/")
+    public ServiceResponse<Color> getAll(){
+        try {
+            List<Color> result = colorService.getAll();
+            return new  ServiceResponse<Color>(result, ResponseStatus.SUCCESS);
+        }catch (Exception e){
+            return new ServiceResponse<Color>(e);
+        }
+    }
     @GetMapping("/{id}")
     public ServiceResponse<Color> search(@PathVariable long id){
         try {

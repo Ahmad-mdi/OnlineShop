@@ -19,6 +19,9 @@ public class ColorService {
         this.colorRepository = colorRepository;
     }
 
+    public List<Color> getAll() {
+       return colorRepository.findAll();
+    }
     public Color getById(long id) {
         Optional<Color> data = colorRepository.findById(id);
         if (data.isPresent()) return data.get();

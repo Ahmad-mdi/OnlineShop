@@ -2,8 +2,11 @@ package shop.app.Services.users;
 
 import org.springframework.stereotype.Service;
 import shop.app.helper.exceptions.DataNotFoundException;
+import shop.app.helper.utils.SecurityUtils;
 import shop.app.models.users.User;
 import shop.app.repositories.users.UserRepository;
+
+import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
 
 @Service
@@ -11,14 +14,25 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    private final SecurityUtils securityUtils;
+
     //construct method:
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, SecurityUtils securityUtils) {
         this.userRepository = userRepository;
+        this.securityUtils = securityUtils;
     }
 
     public User auth(String username,String password){
-        //TODO: hash password
+        try {
+            password = securityUtils.encryptSHA1(password);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
         return userRepository.findFirstByUsernameAndPassword(username,password);
+    }
+
+    public User getByUsername(String username){
+        return userRepository.findFirstByUsername(username);
     }
 
     public User getById(long id) {
@@ -56,8 +70,12 @@ public class UserService {
 
     //for updatePass:
     public User changePassword(long id,String oldPassword,String newPassword) throws Exception {
-        //TODO: hash password
-        User userChanePass = getById(id);
+        try {
+            oldPassword = securityUtils.encryptSHA1(oldPassword);
+            newPassword = securityUtils.encryptSHA1(newPassword);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }        User userChanePass = getById(id);
         if (userChanePass == null)
             throw new DataNotFoundException("user not found!");
         if (!userChanePass.getPassword().equals(oldPassword))
