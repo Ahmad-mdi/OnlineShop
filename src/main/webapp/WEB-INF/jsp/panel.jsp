@@ -16,27 +16,13 @@
     <script src="libs/textAngular-1.5.16/dist/textAngular.min.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/services/ApiHandler.js"></script>
-    <script src="scripts/controllers/loginController.js"></script>
-    <link href="styles/login.css" rel="stylesheet"/>
+    <script src="scripts/controllers/PanelController.js"></script>
 </head>
 <body ng-app="onlineShopApp">
 
-<div class="container-fluid" ng-controller="loginCtlr">
+<div class="container-fluid" ng-controller="panelCtlr">
     <div class="row">
-        <div class="col-3"></div>
-        <div class="col login-box-holder">
-            <h3>Login to panel</h3>
-            <div class="form-group">
-                <label for="username">Email address</label>
-                <input type="text" class="form-control" id="username" ng-model="user.username">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" ng-model="user.password">
-            </div>
-            <button type="submit" class="btn btn-primary" ng-click="doLogin()">Login</button>
-        </div>
-        <div class="col-3"></div>
+        <h3>Panel</h3>
     </div>
 </div>
 
