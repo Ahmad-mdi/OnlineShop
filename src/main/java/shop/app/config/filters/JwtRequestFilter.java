@@ -1,5 +1,6 @@
 package shop.app.config.filters;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import shop.app.Services.users.UserService;
 import shop.app.config.JwtTokenUtil;
@@ -18,6 +19,8 @@ import java.util.List;
 public class JwtRequestFilter implements Filter {
     private final JwtTokenUtil jwtTokenUtil;
     private final UserService userService;
+   /* @Value("${ali.properties}")
+    private String properties;*/
     private List<String> excludeUrls; //for show url by customerUsers
 
     public JwtRequestFilter(UserService userService,JwtTokenUtil jwtTokenUtil) {
@@ -28,18 +31,20 @@ public class JwtRequestFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         //for show url by people: (notFilter)
+//        System.out.println(properties);
         excludeUrls = new ArrayList<>();
         excludeUrls.add("/api/user/login");
         excludeUrls.add("/api/user/add");
         excludeUrls.add("/api/color/");
+        excludeUrls.add("/api/customer/delete/1");
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         try {
-            //first not filter urls:
+            //first, not filter urls:
             String url = ((HttpServletRequest)servletRequest).getRequestURI().toLowerCase();
-            if (excludeUrls.stream().anyMatch(x->url.equals(x))){
+            if (excludeUrls.stream().anyMatch(url::equals)){
                 filterChain.doFilter(servletRequest,servletResponse);//build
                 return;
             }
