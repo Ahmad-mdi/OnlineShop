@@ -1,12 +1,11 @@
 package shop.app.Services.users;
 
 import org.springframework.stereotype.Service;
+import shop.app.ConstantsMessage;
 import shop.app.helper.exceptions.DataNotFoundException;
 import shop.app.models.users.Customer;
 import shop.app.repositories.users.CustomerRepository;
 
-
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,8 +30,8 @@ public class CustomerService {
 
     public Customer update(Customer data) throws DataNotFoundException {
         Customer oldData = getById(data.getId());//getId with db
-        if (oldData == null){
-            throw new DataNotFoundException("data with id"+data.getId()+"not found");
+        if (oldData == null) {
+            throw new DataNotFoundException("data with id" + data.getId() + "not found");
         }
         oldData.setAddress(data.getAddress());
         oldData.setEmail(data.getEmail());
@@ -46,8 +45,8 @@ public class CustomerService {
 
     public boolean deleteById(long id) throws DataNotFoundException {
         Customer oldData = getById(id);//getId with db
-        if (oldData == null){
-            throw new DataNotFoundException("data with id"+id+"not found");
+        if (oldData == null) {
+            throw new DataNotFoundException(String.format(String.format(ConstantsMessage.MSG, id)));
         }
         customerRepository.deleteById(id);
         return true;

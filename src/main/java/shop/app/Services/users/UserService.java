@@ -26,7 +26,7 @@ public class UserService {
         try {
             password = securityUtils.encryptSHA1(password);
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         return userRepository.findFirstByUsernameAndPassword(username,password);
     }
