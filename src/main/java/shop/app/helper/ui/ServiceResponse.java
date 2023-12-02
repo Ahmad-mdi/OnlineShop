@@ -39,7 +39,7 @@ public class ServiceResponse<T> implements Serializable {
         this.dataList = new ArrayList<T>();
         this.status = status;
         this.message = message;
-        this.hasError = false;
+        this.hasError = status == ResponseStatus.FAILED;
         this.totalCount = 0;
     }
     public ServiceResponse(Exception ex) {
