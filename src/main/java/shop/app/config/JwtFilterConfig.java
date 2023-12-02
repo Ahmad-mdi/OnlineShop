@@ -8,7 +8,6 @@ import shop.app.config.filters.JwtRequestFilter;
 @Configuration
 public class JwtFilterConfig  {
     private final JwtRequestFilter jwtRequestFilter;
-
     public JwtFilterConfig(JwtRequestFilter jwtRequestFilter) {
         this.jwtRequestFilter = jwtRequestFilter;
     }

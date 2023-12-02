@@ -20,36 +20,36 @@ public class CustomerController {
     public ServiceResponse<Customer> search(@PathVariable long id){
         try {
             Customer result = customerService.getById(id);
-            return new  ServiceResponse<Customer>(result, ResponseStatus.SUCCESS);
+            return new  ServiceResponse<>(result, ResponseStatus.SUCCESS);
         }catch (Exception e){
-            return new ServiceResponse<Customer>(e);
+            return new ServiceResponse<>(e);
         }
     }
     @PostMapping("/add")
     public ServiceResponse<Customer> add(@RequestBody Customer data){
         try {
             Customer result = customerService.add(data);
-            return new  ServiceResponse<Customer>(result, ResponseStatus.SUCCESS);
+            return new  ServiceResponse<>(result, ResponseStatus.SUCCESS);
         }catch (Exception e){
-            return  new ServiceResponse<Customer>(e);
+            return  new ServiceResponse<>(e);
         }
     }
     @PutMapping("/update")
     public ServiceResponse<Customer> update(@RequestBody Customer data){
         try {
             Customer result = customerService.update(data);
-            return new  ServiceResponse<Customer>(result, ResponseStatus.SUCCESS);
+            return new  ServiceResponse<>(result, ResponseStatus.SUCCESS);
         }catch (Exception e){
-            return  new ServiceResponse<Customer>(e);
+            return  new ServiceResponse<>(e);
         }
     }
     @DeleteMapping("/delete/{id}")
     public ServiceResponse<Boolean> delete(@PathVariable long id){
         try {
             boolean result = customerService.deleteById(id);
-            return new  ServiceResponse<Boolean>(result, ResponseStatus.SUCCESS);
+            return new  ServiceResponse<>(result, ResponseStatus.SUCCESS);
         }catch (Exception e){
-            return  new ServiceResponse<Boolean>(e);
+            return  new ServiceResponse<>(e);
         }
     }
 }

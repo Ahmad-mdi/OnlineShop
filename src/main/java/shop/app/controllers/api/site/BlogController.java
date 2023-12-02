@@ -20,45 +20,45 @@ public class BlogController {
     public ServiceResponse<Blog> search(@RequestParam String keyword){
         try{
             List<Blog> result = blogService.search(keyword);
-            return new  ServiceResponse<Blog>(result, ResponseStatus.SUCCESS);
+            return new ServiceResponse<>(result, ResponseStatus.SUCCESS);
         }catch (Exception e){
-                return new ServiceResponse<Blog>(e);
+                return new ServiceResponse<>(e);
         }
     }
     @GetMapping("/{id}")
     public ServiceResponse<Blog> search(@PathVariable long id){
         try {
             Blog result = blogService.getById(id);
-            return new  ServiceResponse<Blog>(result, ResponseStatus.SUCCESS);
+            return new  ServiceResponse<>(result, ResponseStatus.SUCCESS);
         }catch (Exception e){
-            return new ServiceResponse<Blog>(e);
+            return new ServiceResponse<>(e);
         }
     }
     @PostMapping("/add")
     public ServiceResponse<Blog> add(@RequestBody Blog data){
         try {
             Blog result = blogService.add(data);
-            return new  ServiceResponse<Blog>(result, ResponseStatus.SUCCESS);
+            return new  ServiceResponse<>(result, ResponseStatus.SUCCESS);
         }catch (Exception e){
-            return  new ServiceResponse<Blog>(e);
+            return  new ServiceResponse<>(e);
         }
     }
     @PutMapping("/update")
     public ServiceResponse<Blog> update(@RequestBody Blog data){
         try {
             Blog result = blogService.update(data);
-            return new  ServiceResponse<Blog>(result, ResponseStatus.SUCCESS);
+            return new  ServiceResponse<>(result, ResponseStatus.SUCCESS);
         }catch (Exception e){
-            return  new ServiceResponse<Blog>(e);
+            return  new ServiceResponse<>(e);
         }
     }
     @DeleteMapping("/delete/{id}")
     public ServiceResponse<Boolean> delete(@PathVariable long id){
         try {
             boolean result = blogService.deleteById(id);
-            return new  ServiceResponse<Boolean>(result, ResponseStatus.SUCCESS);
+            return new  ServiceResponse<>(result, ResponseStatus.SUCCESS);
         }catch (Exception e){
-            return  new ServiceResponse<Boolean>(e);
+            return  new ServiceResponse<>(e);
         }
     }
 
@@ -66,11 +66,9 @@ public class BlogController {
     public ServiceResponse<Blog> increase(@RequestBody long id){
         try {
             Blog result = blogService.increaseVisitCount(id);
-            return new  ServiceResponse<Blog>(result, ResponseStatus.SUCCESS);
+            return new  ServiceResponse<>(result, ResponseStatus.SUCCESS);
         }catch (Exception e){
-            return  new ServiceResponse<Blog>(e);
+            return  new ServiceResponse<>(e);
         }
     }
-
-
 }
