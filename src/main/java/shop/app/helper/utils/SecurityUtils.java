@@ -10,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
 @Component
 @Lazy
 public class SecurityUtils {
+    //for hashing passwords:
     @Bean
     public String encryptSHA1(String plainText) throws NoSuchAlgorithmException {
         MessageDigest mDigest = MessageDigest.getInstance("SHA1");
