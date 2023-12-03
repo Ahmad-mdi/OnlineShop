@@ -5,11 +5,14 @@ import org.springframework.web.bind.annotation.*;
 import shop.app.ConstantsMessage;
 import shop.app.Services.users.UserService;
 import shop.app.config.JwtTokenUtil;
+import shop.app.helper.exceptions.JwtTokenException;
 import shop.app.helper.ui.ResponseStatus;
 import shop.app.helper.ui.ServiceResponse;
 import shop.app.helper.ui_models.UserVM;
 import shop.app.helper.utils.SecurityUtils;
 import shop.app.models.users.User;
+
+import javax.servlet.http.HttpServletRequest;
 
 @AllArgsConstructor
 @RestController
@@ -35,6 +38,27 @@ public class UserController {
     public ServiceResponse<UserVM> getById(@PathVariable long id) {
         try {
             User result = userService.getById(id);
+            return new ServiceResponse<>(new UserVM(result), ResponseStatus.SUCCESS);
+        } catch (Exception e) {
+            return new ServiceResponse<>(e);
+        }
+    }
+
+    @GetMapping("/getUserInfo")
+    public ServiceResponse<UserVM> getUserInfo(HttpServletRequest servletRequest) {
+        try {
+            //read token header and if==ok set token:
+            String requestTokenHeader = servletRequest.getHeader("Authorization");
+            if (requestTokenHeader == null || !requestTokenHeader.startsWith("Bearer "))
+                throw new JwtTokenException("request token header dose not set");
+            //get token and username:
+            String token = requestTokenHeader.substring(7);
+            String username = jwtTokenUtil.getUsernameFromToken(token);
+
+            if (username == null)
+                throw new JwtTokenException("username can not resolve");
+
+            User result = userService.getByUsername(username);
             return new ServiceResponse<>(new UserVM(result), ResponseStatus.SUCCESS);
         } catch (Exception e) {
             return new ServiceResponse<>(e);
