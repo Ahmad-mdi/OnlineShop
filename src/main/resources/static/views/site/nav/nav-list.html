@@ -1,0 +1,37 @@
+<div ng-controller="navListCtrl">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Navigation List</h1>
+                <a class="btn btn-sm btn-primary float-right">Add New+</a>
+                <br>
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Link</th>
+                        <th scope="col">Enable</th>
+                        <th scope="col">Order</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="data in dataList">
+                        <th scope="row">{{$index + 1}}</th>
+                        <td>{{data.title}}</td>
+                        <td>{{data.link}}</td>
+                        <td>{{data.enable}}</td>
+                        <td>{{data.itemOrder}}</td>
+                        <td>
+                            <a><i class="fa fa-edit"></i></a>
+                            <a><i class="fa fa-times"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
