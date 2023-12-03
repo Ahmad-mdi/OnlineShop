@@ -1,5 +1,8 @@
 package shop.app.Services.site;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import shop.app.helper.exceptions.DataNotFoundException;
@@ -18,7 +21,6 @@ public class NavService {
 
     //construct method:
 
-
     public NavService(NavRepository navRepository) {
         this.navRepository = navRepository;
     }
@@ -27,6 +29,12 @@ public class NavService {
     //get all Navs sort by itemOrder:
     public List<Nav> findAllOrderByItemOrder() {
         return navRepository.findAllByEnableIsTrue(Sort.by("itemOrder"));
+    }
+//getAll by pagination
+    public List<Nav> getAll(Integer pageSize,Integer pageNumber){
+        Pageable pagination = PageRequest.of(pageNumber,pageSize,Sort.by("itemOrder"));
+        Page<Nav> all = navRepository.findAll(pagination);
+        return all.toList();
     }
 
     //get Nav by id:
