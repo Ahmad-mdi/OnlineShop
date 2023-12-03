@@ -16,12 +16,13 @@ public class UserVM {
     private String lastname;
     private String username;
     private String password;
-    @JsonIgnore// not show data in response
+//    @JsonIgnore// not show data in response
     private String newPassword;
     private String email;
     private UserRole role;
     private boolean enable;
     private String token;
+    private String fullName;
 
     public UserVM(User user) {
         setId(user.getId());
@@ -32,6 +33,7 @@ public class UserVM {
         setRole(user.getRole());
         setRole(user.getRole());
         setUsername(user.getUsername());
+        setFullName(getFirstname()+" "+getLastname());
     }
 
 }
