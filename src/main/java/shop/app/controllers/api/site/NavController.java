@@ -8,58 +8,74 @@ import shop.app.models.site.Nav;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/api/nav")
 public class NavController {
     private final NavService navService;
+
     public NavController(NavService navService) {
         this.navService = navService;
     }
 
     @GetMapping
-    public ServiceResponse<Nav> get(){
-        try{
-            List<Nav> result = navService.findAllOrderByItemOrder();
-            return new  ServiceResponse<Nav>(result, ResponseStatus.SUCCESS);
-        }catch (Exception e){
-                return new ServiceResponse<Nav>(e);
-        }
-    }
-    @GetMapping("/{id}")
-    public ServiceResponse<Nav> search(@PathVariable long id){
+    public ServiceResponse<Nav> get() {
         try {
-            Nav result = navService.getById(id);
-            return new  ServiceResponse<Nav>(result, ResponseStatus.SUCCESS);
-        }catch (Exception e){
+            List<Nav> result = navService.findAllOrderByItemOrder();
+            return new ServiceResponse<Nav>(result, ResponseStatus.SUCCESS);
+        } catch (Exception e) {
             return new ServiceResponse<Nav>(e);
         }
     }
+
+    @GetMapping("/getAll")
+    public ServiceResponse<Nav> getAll(
+            @RequestParam Integer pageSize,
+            @RequestParam Integer pageNumber) {
+        try {
+            List<Nav> result = navService.getAll(pageSize, pageNumber);
+            return new ServiceResponse<>(result, ResponseStatus.SUCCESS);
+        } catch (Exception e) {
+            return new ServiceResponse<>(e);
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ServiceResponse<Nav> search(@PathVariable long id) {
+        try {
+            Nav result = navService.getById(id);
+            return new ServiceResponse<Nav>(result, ResponseStatus.SUCCESS);
+        } catch (Exception e) {
+            return new ServiceResponse<Nav>(e);
+        }
+    }
+
     @PostMapping("/add")
-    public ServiceResponse<Nav> add(@RequestBody Nav data){
+    public ServiceResponse<Nav> add(@RequestBody Nav data) {
         try {
             Nav result = navService.add(data);
-            return new  ServiceResponse<Nav>(result, ResponseStatus.SUCCESS);
-        }catch (Exception e){
-            return  new ServiceResponse<Nav>(e);
+            return new ServiceResponse<Nav>(result, ResponseStatus.SUCCESS);
+        } catch (Exception e) {
+            return new ServiceResponse<Nav>(e);
         }
     }
+
     @PutMapping("/update")
-    public ServiceResponse<Nav> update(@RequestBody Nav data){
+    public ServiceResponse<Nav> update(@RequestBody Nav data) {
         try {
             Nav result = navService.update(data);
-            return new  ServiceResponse<Nav>(result, ResponseStatus.SUCCESS);
-        }catch (Exception e){
-            return  new ServiceResponse<Nav>(e);
+            return new ServiceResponse<Nav>(result, ResponseStatus.SUCCESS);
+        } catch (Exception e) {
+            return new ServiceResponse<Nav>(e);
         }
     }
+
     @DeleteMapping("/delete/{id}")
-    public ServiceResponse<Boolean> delete(@PathVariable long id){
+    public ServiceResponse<Boolean> delete(@PathVariable long id) {
         try {
             boolean result = navService.deleteById(id);
-            return new  ServiceResponse<Boolean>(result, ResponseStatus.SUCCESS);
-        }catch (Exception e){
-            return  new ServiceResponse<Boolean>(e);
+            return new ServiceResponse<Boolean>(result, ResponseStatus.SUCCESS);
+        } catch (Exception e) {
+            return new ServiceResponse<Boolean>(e);
         }
     }
 }
