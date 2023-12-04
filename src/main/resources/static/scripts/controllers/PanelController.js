@@ -33,7 +33,7 @@ app.controller("panelCtlr", function ($scope, apiHandler, $cookies, $rootScope) 
     $scope.getMenuPrefix = (templateName) => {
         if (templateName === 'dashboard') {
             return 'views/' + templateName + '.html';
-        } else if (templateName === 'nav-list') {
+        } else if (templateName === 'nav-list' || templateName === 'nav-add'|| templateName === 'nav-edit') {
             return 'views/site/nav/' + templateName + '.html';
         } else {
             return 'views/dashboard.html';
@@ -43,9 +43,7 @@ app.controller("panelCtlr", function ($scope, apiHandler, $cookies, $rootScope) 
     $scope.getMenuGroup = (templateName) => {
         if (templateName === 'dashboard') {
             return 'dashboard';
-        } else if (templateName === 'nav-list'
-            || templateName === 'nav-edit'
-            || templateName === 'nav-insert') {
+        } else if (templateName === 'nav-list' || templateName === 'nav-edit' || templateName === 'nav-add') {
             return 'nav';
         } else {
             return 'dashboard';
