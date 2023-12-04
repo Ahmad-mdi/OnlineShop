@@ -33,14 +33,15 @@ public class NavController {
             @RequestParam Integer pageNumber) {
         try {
             List<Nav> result = navService.getAll(pageSize, pageNumber);
-            return new ServiceResponse<>(result, ResponseStatus.SUCCESS);
+            long totalCount = navService.getAllCount();
+            return new ServiceResponse<>(result,totalCount, ResponseStatus.SUCCESS);
         } catch (Exception e) {
             return new ServiceResponse<>(e);
         }
     }
 
     @GetMapping("/{id}")
-    public ServiceResponse<Nav> search(@PathVariable long id) {
+    public ServiceResponse<Nav> getById(@PathVariable long id) {
         try {
             Nav result = navService.getById(id);
             return new ServiceResponse<Nav>(result, ResponseStatus.SUCCESS);
@@ -53,6 +54,16 @@ public class NavController {
     public ServiceResponse<Nav> add(@RequestBody Nav data) {
         try {
             Nav result = navService.add(data);
+            return new ServiceResponse<Nav>(result, ResponseStatus.SUCCESS);
+        } catch (Exception e) {
+            return new ServiceResponse<Nav>(e);
+        }
+    }
+
+    @PostMapping("/changeOrder/{id}/{direction}")
+    public ServiceResponse<Nav> changeOrder(@PathVariable long id ,@PathVariable int direction) {
+        try {
+            Nav result = navService.changeOrder(id,direction);
             return new ServiceResponse<Nav>(result, ResponseStatus.SUCCESS);
         } catch (Exception e) {
             return new ServiceResponse<Nav>(e);
