@@ -21,7 +21,7 @@
 </head>
 <body ng-app="onlineShopApp">
 
-<div class="container-fluid" ng-controller="loginCtlr">
+<div class="container-fluid" ng-controller="loginCtrl">
     <div class="row">
         <div class="col-3"></div>
         <div class="col login-box-holder">
