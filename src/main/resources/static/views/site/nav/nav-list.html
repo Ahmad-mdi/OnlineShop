@@ -1,9 +1,9 @@
 <div ng-controller="navListCtrl">
-    <div class="container">
+    <div class="container p-3">
         <div class="row">
             <div class="col">
                 <h1>Navigation List</h1>
-                <a class="btn btn-sm btn-primary float-right">Add New+</a>
+                <a class="btn btn-sm btn-success float-right" ng-click="changeMenu('nav-add')">Add New+</a>
                 <br>
                 <br>
                 <table class="table table-striped">
@@ -18,19 +18,36 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="data in dataList">
+                    <tr ng-repeat="data in dataList"> <!--foreach in angular-->
                         <th scope="row">{{$index + 1}}</th>
                         <td>{{data.title}}</td>
                         <td>{{data.link}}</td>
-                        <td>{{data.enable}}</td>
+                        <td>
+                            <i class="fa fa-check" ng-show="data.enable"></i>
+                            <i class="fa fa-times" ng-show="!data.enable"></i>
+                        </td>
                         <td>{{data.itemOrder}}</td>
                         <td>
-                            <a><i class="fa fa-edit"></i></a>
-                            <a><i class="fa fa-times"></i></a>
+                            <a ng-click="editItem(data.id)"><i title="edit" class="fa fa-edit color-green cursor-pointer"></i>&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <a ng-click="deleteItem(data.id)"><i title="delete" class="fa fa-times color-red cursor-pointer"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <a ng-click="changeOrder(data.id,1)"><i title="up-order" class="fa fa-arrow-up color-yellow cursor-pointer"></i>&nbsp;</a>
+                            <a ng-click="changeOrder(data.id,0)"><i title="down-order" class="fa fa-arrow-down color-blue cursor-pointer"></i></a>
                         </td>
                     </tr>
                     </tbody>
                 </table>
+                <br>
+                <div>
+                    <nav>
+                        <ul class="pagination pagination-sm">
+                            <li ng-repeat="i in range(pageCount) track by $index" class="page-item">
+                                <span class="page-link" ng-click="changePage($index)">
+                                    {{($index + 1)}}
+                                </span>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
