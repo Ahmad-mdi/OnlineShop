@@ -11,5 +11,7 @@ import java.util.List;
 @Repository
 public interface NavRepository extends JpaRepository<Nav,Long> {
     List<Nav> findAllByEnableIsTrue(Sort sort);
+    Nav findTopByOrderByItemOrderDesc();
+    Nav findTopByItemOrder(int itemOrder);
 
 }
