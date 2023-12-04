@@ -20,6 +20,8 @@
     <script src="scripts/services/ApiHandler.js"></script>
     <script src="scripts/controllers/PanelController.js"></script>
     <script src="scripts/controllers/site/navListController.js"></script>
+    <script src="scripts/controllers/site/navAddController.js"></script>
+    <script src="scripts/controllers/site/navEditController.js"></script>
     <link rel="stylesheet" href="styles/panel.css">
 
 </head>
