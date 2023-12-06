@@ -28,10 +28,21 @@
                         </td>
                         <td>{{data.itemOrder}}</td>
                         <td>
-                            <a ng-click="editItem(data.id)"><i title="edit" class="fa fa-edit color-green cursor-pointer"></i>&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                            <a ng-click="deleteItem(data.id)"><i title="delete" class="fa fa-times color-red cursor-pointer"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                            <a ng-click="changeOrder(data.id,1)"><i title="up-order" class="fa fa-arrow-up color-yellow cursor-pointer"></i>&nbsp;</a>
-                            <a ng-click="changeOrder(data.id,0)"><i title="down-order" class="fa fa-arrow-down color-blue cursor-pointer"></i></a>
+                            <a ng-click="editItem(data.id)">
+                                <i title="edit" class="fa fa-edit color-green cursor-pointer"></i>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                            </a>
+                            <a ng-click="deleteItem(data.id)">
+                                <i title="delete" class="fa fa-times color-red cursor-pointer"></i>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </a>
+                            <a ng-click="changeOrder(data.id,1)">
+                                <i title="up-order" class="fa fa-arrow-up color-yellow cursor-pointer"></i>
+                                &nbsp;
+                            </a>
+                            <a ng-click="changeOrder(data.id,0)">
+                                <i title="down-order" class="fa fa-arrow-down color-blue cursor-pointer"></i>
+                            </a>
                         </td>
                     </tr>
                     </tbody>
