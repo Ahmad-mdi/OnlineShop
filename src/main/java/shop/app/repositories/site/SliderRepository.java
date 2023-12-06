@@ -11,4 +11,6 @@ import java.util.List;
 @Repository
 public interface SliderRepository extends JpaRepository<Slider,Long> {
     List<Slider> findAllByEnableIsTrue(Sort sort);
+    Slider findTopByOrderByItemOrderDesc();
+    Slider findTopByItemOrder(int itemOrder);
 }
