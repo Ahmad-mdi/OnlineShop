@@ -18,10 +18,19 @@
     <script src="libs/textAngular-1.5.16/dist/textAngular.min.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/services/ApiHandler.js"></script>
+    <script src="scripts/directives/fileModel.js"></script>
+    <script src="scripts/controllers/util/uploadFileController.js"></script>
+    <script src="scripts/controllers/util/getFilesCtrl.js"></script>
     <script src="scripts/controllers/PanelController.js"></script>
-    <script src="scripts/controllers/site/navListController.js"></script>
-    <script src="scripts/controllers/site/navAddController.js"></script>
-    <script src="scripts/controllers/site/navEditController.js"></script>
+    <script src="scripts/controllers/site/nav/navListController.js"></script>
+    <script src="scripts/controllers/site/nav/navAddController.js"></script>
+    <script src="scripts/controllers/site/nav/navEditController.js"></script>
+    <script src="scripts/controllers/site/content/contentListController.js"></script>
+    <script src="scripts/controllers/site/content/contentAddController.js"></script>
+    <script src="scripts/controllers/site/content/contentEditController.js"></script>
+    <script src="scripts/controllers/site/slider/sliderListController.js"></script>
+    <script src="scripts/controllers/site/slider/sliderAddController.js"></script>
+    <script src="scripts/controllers/site/slider/sliderEditController.js"></script>
     <link rel="stylesheet" href="styles/panel.css">
 
 </head>
@@ -54,14 +63,14 @@
                             <span>Navigation</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
+                    <li ng-class="{'side-nav-active':templateGroup == 'content'}">
+                        <a href="#" ng-click="changeMenu('content-list')">
                             <i class="fa fa-file-pdf"></i>
                             <span>Content</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
+                    <li ng-class="{'side-nav-active':templateGroup == 'slider'}">
+                        <a href="#" ng-click="changeMenu('slider-list')">
                             <i class="fa fa-photo-video"></i>
                             <span>Sliders</span>
                         </a>
@@ -88,6 +97,12 @@
                         <a href="#">
                             <i class="fa fa-shopping-bag"></i>
                             <span>Customers</span>
+                        </a>
+                    </li>
+                    <li ng-class="{'side-nav-active':templateGroup == 'uploader'}">
+                        <a href="#" ng-click="changeMenu('uploader')">
+                            <i class="fa fa-file-import"></i>
+                            <span>File Manager</span>
                         </a>
                     </li>
                 </ul>
