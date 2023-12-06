@@ -5,6 +5,7 @@ import shop.app.Services.site.ContentService;
 import shop.app.helper.ui.ResponseStatus;
 import shop.app.helper.ui.ServiceResponse;
 import shop.app.models.site.Content;
+import shop.app.models.site.Nav;
 
 import java.util.List;
 
@@ -35,6 +36,19 @@ public class ContentController {
             return new ServiceResponse<Content>(result, ResponseStatus.SUCCESS);
         } catch (Exception e) {
             return new ServiceResponse<Content>(e);
+        }
+    }
+
+    @GetMapping("/getAll")
+    public ServiceResponse<Content> getAll(
+            @RequestParam Integer pageSize,
+            @RequestParam Integer pageNumber) {
+        try {
+            List<Content> result = contentService.getAll(pageSize, pageNumber);
+            long totalCount = contentService.getAllCount();
+            return new ServiceResponse<>(result,totalCount, ResponseStatus.SUCCESS);
+        } catch (Exception e) {
+            return new ServiceResponse<>(e);
         }
     }
 

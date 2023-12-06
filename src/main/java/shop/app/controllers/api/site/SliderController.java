@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.*;
 import shop.app.Services.site.SliderService;
 import shop.app.helper.ui.ResponseStatus;
 import shop.app.helper.ui.ServiceResponse;
+import shop.app.models.site.Nav;
+import shop.app.models.site.Slider;
 import shop.app.models.site.Slider;
 
 import java.util.List;
@@ -38,6 +40,19 @@ public class SliderController {
         }
     }
 
+    @GetMapping("/getAll")
+    public ServiceResponse<Slider> getAll(
+            @RequestParam Integer pageSize,
+            @RequestParam Integer pageNumber) {
+        try {
+            List<Slider> result = sliderService.getAll(pageSize, pageNumber);
+            long totalCount = sliderService.getAllCount();
+            return new ServiceResponse<>(result,totalCount, ResponseStatus.SUCCESS);
+        } catch (Exception e) {
+            return new ServiceResponse<>(e);
+        }
+    }
+
     @PostMapping("/add")
     public ServiceResponse<Slider> add(@RequestBody Slider data) {
         try {
@@ -45,6 +60,16 @@ public class SliderController {
             return new ServiceResponse<Slider>(result, ResponseStatus.SUCCESS);
         } catch (Exception e) {
             return new ServiceResponse<Slider>(e);
+        }
+    }
+
+    @PostMapping("/changeOrder/{id}/{direction}")
+    public ServiceResponse<Slider> changeOrder(@PathVariable long id , @PathVariable int direction) {
+        try {
+            Slider result = sliderService.changeOrder(id,direction);
+            return new ServiceResponse<>(result, ResponseStatus.SUCCESS);
+        } catch (Exception e) {
+            return new ServiceResponse<>(e);
         }
     }
 
