@@ -1,9 +1,13 @@
 package shop.app.Services.site;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import shop.app.helper.exceptions.DataNotFoundException;
 import shop.app.models.site.Content;
+import shop.app.models.site.Nav;
 import shop.app.repositories.site.ContentRepository;
 import shop.app.repositories.site.ContentRepository;
 
@@ -28,6 +32,17 @@ public class ContentService {
         if (data.isPresent()) return data.get();
         return null;
 
+    }
+
+    public List<Content> getAll(Integer pageSize, Integer pageNumber) {
+        Pageable pagination = PageRequest.of(pageNumber, pageSize, Sort.by("id"));
+        Page<Content> all = contentRepository.findAll(pagination);
+        return all.toList();
+    }
+
+    //totalCount pagination:
+    public long getAllCount() {
+        return contentRepository.count();
     }
 
     public Content add(Content data) {
