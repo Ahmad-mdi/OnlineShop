@@ -95,8 +95,9 @@ public class NavService {
             throw new Exception("please enter your link");
 
         Nav lastItem = navRepository.findTopByOrderByItemOrderDesc();
-        if (lastItem != null || lastItem.getItemOrder() > 0)
+        if (lastItem != null && lastItem.getItemOrder() > 0)
             data.setItemOrder(lastItem.getItemOrder() + 1);
+        else data.setItemOrder(1);
         return navRepository.save(data);
     }
 
