@@ -33,8 +33,14 @@ app.controller("panelCtlr", function ($scope, apiHandler, $cookies, $rootScope) 
     $scope.getMenuPrefix = (templateName) => {
         if (templateName === 'dashboard') {
             return 'views/' + templateName + '.html';
-        } else if (templateName === 'nav-list' || templateName === 'nav-add'|| templateName === 'nav-edit') {
+        } else if (templateName === 'nav-list' || templateName === 'nav-add' || templateName === 'nav-edit') {
             return 'views/site/nav/' + templateName + '.html';
+        } else if (templateName === 'content-list' || templateName === 'content-add' || templateName === 'content-edit') {
+            return 'views/site/content/' + templateName + '.html';
+        } else if (templateName === 'slider-list' || templateName === 'slider-add' || templateName === 'slider-edit') {
+            return 'views/site/slider/' + templateName + '.html';
+        } else if (templateName === 'uploader') {
+            return 'views/util/' + templateName + '.html';
         } else {
             return 'views/dashboard.html';
         }
@@ -45,6 +51,12 @@ app.controller("panelCtlr", function ($scope, apiHandler, $cookies, $rootScope) 
             return 'dashboard';
         } else if (templateName === 'nav-list' || templateName === 'nav-edit' || templateName === 'nav-add') {
             return 'nav';
+        } else if (templateName === 'content-list' || templateName === 'content-edit' || templateName === 'content-add') {
+            return 'content';
+        } else if (templateName === 'slider-list' || templateName === 'slider-edit' || templateName === 'slider-add') {
+            return 'slider';
+        }else if (templateName === 'uploader') {
+            return 'uploader';
         } else {
             return 'dashboard';
         }
