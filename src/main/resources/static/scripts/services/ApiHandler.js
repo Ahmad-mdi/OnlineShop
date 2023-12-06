@@ -7,7 +7,7 @@ app.service("apiHandler", function ($http, $cookies) {
             method: "POST",
             data: data
         };
-        this.checkAndSetToken(request, setToken);
+        this.checkAndSetToken(request, setToken)
         $http(request).then((response) => {
             if (response != null && response.data != null) {
                 let result = response.data;
