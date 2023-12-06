@@ -37,6 +37,7 @@ public class JwtRequestFilter implements Filter {
         excludeUrls.add("/api/user/add");
         excludeUrls.add("/api/color/");
         excludeUrls.add("/api/customer/delete/1");
+        excludeUrls.add("/api/utils/upload/files/");
     }
 
     @Override
@@ -44,7 +45,7 @@ public class JwtRequestFilter implements Filter {
         try {
             //first, not filter urls:
             String url = ((HttpServletRequest)servletRequest).getRequestURI().toLowerCase();
-            if (excludeUrls.stream().anyMatch(url::equals)){
+            if (excludeUrls.stream().anyMatch(url::startsWith)){
                 filterChain.doFilter(servletRequest,servletResponse);//build
                 return;
             }
