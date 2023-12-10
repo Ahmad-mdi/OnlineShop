@@ -39,6 +39,10 @@ app.controller("panelCtlr", function ($scope, apiHandler, $cookies, $rootScope) 
             return 'views/site/content/' + templateName + '.html';
         } else if (templateName === 'slider-list' || templateName === 'slider-add' || templateName === 'slider-edit') {
             return 'views/site/slider/' + templateName + '.html';
+        } else if (templateName === 'blog-list' || templateName === 'blog-add' || templateName === 'blog-edit') {
+            return 'views/site/blog/' + templateName + '.html';
+        }else if (templateName === 'user-list' || templateName === 'user-add' || templateName === 'user-edit') {
+            return 'views/users/' + templateName + '.html';
         } else if (templateName === 'uploader') {
             return 'views/util/' + templateName + '.html';
         } else {
@@ -55,13 +59,16 @@ app.controller("panelCtlr", function ($scope, apiHandler, $cookies, $rootScope) 
             return 'content';
         } else if (templateName === 'slider-list' || templateName === 'slider-edit' || templateName === 'slider-add') {
             return 'slider';
-        }else if (templateName === 'uploader') {
+        }else if (templateName === 'blog-list' || templateName === 'blog-edit' || templateName === 'blog-add') {
+            return 'blog';
+        }else if (templateName === 'user-list' || templateName === 'user-edit' || templateName === 'user-add') {
+            return 'user';
+        } else if (templateName === 'uploader') {
             return 'uploader';
         } else {
             return 'dashboard';
         }
     }
-
     $scope.checkAccess();
 });
 
