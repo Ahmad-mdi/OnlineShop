@@ -1,5 +1,9 @@
 package shop.app.Services.users;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import shop.app.helper.exceptions.DataNotFoundException;
 import shop.app.helper.utils.SecurityUtils;
@@ -7,6 +11,7 @@ import shop.app.models.users.User;
 import shop.app.repositories.users.UserRepository;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,6 +40,17 @@ public class UserService {
         return userRepository.findFirstByUsername(username);
     }
 
+    public List<User> getAll(Integer pageSize, Integer pageNumber) {
+        Pageable pagination = PageRequest.of(pageNumber, pageSize, Sort.by("id"));
+        Page<User> all = userRepository.findAll(pagination);
+        return all.toList();
+    }
+
+    //totalCount pagination:
+    public long getAllCount() {
+        return userRepository.count();
+    }
+
     public User getById(long id) {
         Optional<User> data = userRepository.findById(id);
         if (data.isPresent()) return data.get();
@@ -47,7 +63,7 @@ public class UserService {
         return userRepository.save(data);
     }
 
-    public User update(User data) throws DataNotFoundException {
+    public User update(User data) throws DataNotFoundException, NoSuchAlgorithmException {
         User oldData = getById(data.getId());//getId with db
         if (oldData == null){
             throw new DataNotFoundException("data with id"+data.getId()+"not found");
@@ -56,6 +72,8 @@ public class UserService {
         oldData.setFirstname(data.getFirstname());
         oldData.setLastname(data.getLastname());
         oldData.setEnable(data.isEnable());
+        if (data.getPassword() != null && !data.getPassword().isEmpty())
+            oldData.setPassword(securityUtils.encryptSHA1(data.getPassword()));
         return userRepository.save(oldData);
     }
 
