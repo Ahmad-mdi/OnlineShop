@@ -1,9 +1,14 @@
 package shop.app.Services.site;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import shop.app.helper.exceptions.DataNotFoundException;
 import shop.app.helper.ui.ServiceResponse;
 import shop.app.models.site.Blog;
+import shop.app.models.site.Slider;
 import shop.app.repositories.site.BlogRepository;
 
 import java.util.List;
@@ -29,10 +34,21 @@ public class BlogService {
 
     }
 
+    public List<Blog> getAll(Integer pageSize, Integer pageNumber) {
+        Pageable pagination = PageRequest.of(pageNumber, pageSize, Sort.by("publishDate"));
+        Page<Blog> all = blogRepository.findAll(pagination);
+        return all.toList();
+    }
+
+    //totalCount pagination:
+    public long getAllCount() {
+        return blogRepository.count();
+    }
+
     public Blog add(Blog data) throws Exception {
         if (data.getTitle() == null || data.getTitle().equals(""))
             throw new Exception("please fill title field");
-
+        data.setVisitCount(0);
         return blogRepository.save(data);
     }
 
