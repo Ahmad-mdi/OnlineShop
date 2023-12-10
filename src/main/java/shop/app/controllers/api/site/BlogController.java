@@ -5,6 +5,8 @@ import shop.app.Services.site.BlogService;
 import shop.app.helper.ui.ResponseStatus;
 import shop.app.helper.ui.ServiceResponse;
 import shop.app.models.site.Blog;
+import shop.app.models.site.Slider;
+
 import java.util.List;
 
 
@@ -26,11 +28,24 @@ public class BlogController {
         }
     }
     @GetMapping("/{id}")
-    public ServiceResponse<Blog> search(@PathVariable long id){
+    public ServiceResponse<Blog> getById(@PathVariable long id){
         try {
             Blog result = blogService.getById(id);
             return new  ServiceResponse<>(result, ResponseStatus.SUCCESS);
         }catch (Exception e){
+            return new ServiceResponse<>(e);
+        }
+    }
+
+    @GetMapping("/getAll")
+    public ServiceResponse<Blog> getAll(
+            @RequestParam Integer pageSize,
+            @RequestParam Integer pageNumber) {
+        try {
+            List<Blog> result = blogService.getAll(pageSize, pageNumber);
+            long totalCount = blogService.getAllCount();
+            return new ServiceResponse<>(result,totalCount, ResponseStatus.SUCCESS);
+        } catch (Exception e) {
             return new ServiceResponse<>(e);
         }
     }
