@@ -31,6 +31,12 @@
     <script src="scripts/controllers/site/slider/sliderListController.js"></script>
     <script src="scripts/controllers/site/slider/sliderAddController.js"></script>
     <script src="scripts/controllers/site/slider/sliderEditController.js"></script>
+    <script src="scripts/controllers/site/blog/blogEditController.js"></script>
+    <script src="scripts/controllers/site/blog/blogListController.js"></script>
+    <script src="scripts/controllers/site/blog/blogAddController.js"></script>
+    <script src="scripts/controllers/users/userListController.js"></script>
+    <script src="scripts/controllers/users/userAddController.js"></script>
+    <script src="scripts/controllers/users/userEditController.js"></script>
     <link rel="stylesheet" href="styles/panel.css">
 
 </head>
@@ -75,8 +81,8 @@
                             <span>Sliders</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
+                    <li ng-class="{'side-nav-active':templateGroup == 'blog'}">
+                        <a href="#" ng-click="changeMenu('blog-list')">
                             <i class="fa fa-newspaper"></i>
                             <span>Blog</span>
                         </a>
@@ -87,8 +93,8 @@
                             <span>Products</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
+                    <li ng-class="{'side-nav-active':templateGroup == 'user'}">
+                        <a href="#" ng-click="changeMenu('user-list')">
                             <i class="fa fa-users"></i>
                             <span>Users</span>
                         </a>
