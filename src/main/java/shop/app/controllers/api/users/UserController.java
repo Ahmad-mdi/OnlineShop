@@ -10,9 +10,12 @@ import shop.app.helper.ui.ResponseStatus;
 import shop.app.helper.ui.ServiceResponse;
 import shop.app.helper.ui_models.UserVM;
 import shop.app.helper.utils.SecurityUtils;
+
 import shop.app.models.users.User;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -39,6 +42,21 @@ public class UserController {
         try {
             User result = userService.getById(id);
             return new ServiceResponse<>(new UserVM(result), ResponseStatus.SUCCESS);
+        } catch (Exception e) {
+            return new ServiceResponse<>(e);
+        }
+    }
+
+    @GetMapping("/getAll")
+    public ServiceResponse<UserVM> getAll(
+            @RequestParam Integer pageSize,
+            @RequestParam Integer pageNumber) {
+        try {
+            List<User> result = userService.getAll(pageSize, pageNumber);
+            List<UserVM> resultVM = new ArrayList<>();
+            result.forEach(data->resultVM.add(new UserVM(data)));
+            long totalCount = userService.getAllCount();
+            return new ServiceResponse<>(resultVM,totalCount, ResponseStatus.SUCCESS);
         } catch (Exception e) {
             return new ServiceResponse<>(e);
         }
