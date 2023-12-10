@@ -1,6 +1,5 @@
 package shop.app.controllers.api.utils;
 
-
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -11,7 +10,6 @@ import org.springframework.core.io.Resource;
 import shop.app.helper.ui.ResponseStatus;
 import shop.app.helper.ui.ServiceResponse;
 import shop.app.helper.ui_models.UploadForm;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -24,8 +22,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/utils/upload")
 public class UploadController {
-    private static String UPLOAD_DIR = System.getProperty("user.home") + "/files";
-
+    private static final String UPLOAD_DIR = System.getProperty("user.home") + "/downloads/uploads";
     @PostMapping("/uploadMultiFiles")
     public ResponseEntity<?> uploadFileMulti(@ModelAttribute UploadForm form) throws Exception {
 
